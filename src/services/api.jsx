@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL: "https://cinemabe-production.up.railway.app",
   headers: {
     "Content-Type": "application/json",
   },
@@ -21,6 +21,7 @@ export const getCategories = async () => {
 //Movie
 export const getMovieById = async (movieId) => {
   const response = await api.get(`/movies/${movieId}`);
+
   return response.data;
 };
 
@@ -41,5 +42,6 @@ export const login = async ({ username, password }) => {
   const response = await api.post("/login", null, {
     params: { username, password },
   });
+
   return response.data;
 };
