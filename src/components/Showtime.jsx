@@ -5,7 +5,7 @@ const schedule = {
     {
       title: "(LỒNG TIẾNG) SÁT THỦ VÔ CÙNG CỰC HÀI (T16)",
       poster:
-        "https://metiz.vn/media/poster_film/satthuvocungcuchaiLTPoster.jpg", // Thay bằng link ảnh thực tế
+        "https://metiz.vn/media/poster_film/satthuvocungcuchaiLTPoster.jpg",
       showtimes: [
         { time: "09:30-11:17", room: "05" },
         { time: "14:10-15:57", room: "04" },
@@ -15,7 +15,7 @@ const schedule = {
     },
     {
       title: "(PHỤ ĐỀ) SÁT THỦ VÔ CÙNG CỰC HÀI (T16)",
-      poster: "https://metiz.vn/media/poster_film/hitman_2_.jpg", // Thay bằng link ảnh thực tế
+      poster: "https://metiz.vn/media/poster_film/hitman_2_.jpg",
       showtimes: [
         { time: "13:10-14:57", room: "03" },
         { time: "17:10-18:57", room: "01" },
@@ -44,24 +44,26 @@ const Showtime = () => {
   const dates = Array.from({ length: 7 }, (_, i) => {
     const date = new Date(today);
     date.setDate(today.getDate() + i);
-    return date.toISOString().split("T")[0]; // Format YYYY-MM-DD
+    return date.toISOString().split("T")[0];
   });
 
   return (
-    <div className="p-6">
+    <div className="p-6 bg-black text-white min-h-screen">
       <h2 className="text-orange-500 text-2xl font-bold mb-4">Lịch chiếu</h2>
 
       {/* Chọn ngày */}
-      <div className="bg-orange-50 border-t-2 border-orange-500 p-4 rounded-lg">
-        <h3 className="text-lg text-black font-semibold mb-2">
+      <div className="bg-gray-900 border-t-2 border-orange-500 p-4 rounded-lg">
+        <h3 className="text-lg text-white font-semibold mb-2">
           Chọn ngày chiếu
         </h3>
         <div className="flex space-x-4">
           {dates.map((date) => (
             <button
               key={date}
-              className={`p-2 rounded-full w-10 h-10 text-white font-bold ${
-                selectedDate === date ? "bg-orange-500" : "bg-gray-300"
+              className={`p-2 rounded-full w-10 h-10 font-bold ${
+                selectedDate === date
+                  ? "bg-orange-500 text-white"
+                  : "bg-gray-700 text-white"
               }`}
               onClick={() => setSelectedDate(date)}
             >
@@ -83,12 +85,15 @@ const Showtime = () => {
                 className="w-24 h-36 object-cover rounded"
               />
               <div>
-                <h4 className="font-bold">{movie.title}</h4>
+                <h4 className="font-bold text-white">{movie.title}</h4>
                 <div className="mt-2 grid grid-cols-2 gap-2">
                   {movie.showtimes.map((show, idx) => (
-                    <div key={idx} className="border p-2 text-center rounded">
-                      <p className="font-semibold">{show.time}</p>
-                      <p className="text-sm text-gray-500">
+                    <div
+                      key={idx}
+                      className="border p-2 text-center rounded bg-gray-800"
+                    >
+                      <p className="font-semibold text-white">{show.time}</p>
+                      <p className="text-sm text-gray-400">
                         Phòng chiếu {show.room}
                       </p>
                     </div>
@@ -98,7 +103,7 @@ const Showtime = () => {
             </div>
           ))
         ) : (
-          <p className="text-gray-500 mt-2">
+          <p className="text-gray-400 mt-2">
             Ngày bạn chọn hiện không có lịch chiếu nào. Vui lòng chọn ngày khác.
           </p>
         )}
